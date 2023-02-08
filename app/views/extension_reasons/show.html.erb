@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @extension_reason %>
+
+<div>
+  <%= link_to "Edit this extension reason", edit_extension_reason_path(@extension_reason) %> |
+  <%= link_to "Back to extension reasons", extension_reasons_path %>
+
+  <%= button_to "Destroy this extension reason", @extension_reason, method: :delete %>
+</div>

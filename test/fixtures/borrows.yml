@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Book: one
+  user: one
+  approver_id: 1
+  return_inspector_id: 1
+  borrow_date: 2023-02-09 00:00:29
+  return_date: 2023-02-09 00:00:29
+  returned_at: 2023-02-09 00:00:29
+  cost: 9.99
+  comments: MyString
+
+two:
+  Book: two
+  user: two
+  approver_id: 1
+  return_inspector_id: 1
+  borrow_date: 2023-02-09 00:00:29
+  return_date: 2023-02-09 00:00:29
+  returned_at: 2023-02-09 00:00:29
+  cost: 9.99
+  comments: MyString

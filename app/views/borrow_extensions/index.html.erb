@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Borrow extensions</h1>
+
+<div id="borrow_extensions">
+  <% @borrow_extensions.each do |borrow_extension| %>
+    <%= render borrow_extension %>
+    <p>
+      <%= link_to "Show this borrow extension", borrow_extension %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New borrow extension", new_borrow_extension_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cover_pic: MyString
+  book_title: one
+  Publisher: one
+  date: 2023-02-09
+
+two:
+  cover_pic: MyString
+  book_title: two
+  Publisher: two
+  date: 2023-02-09

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @borrow_extension %>
+
+<div>
+  <%= link_to "Edit this borrow extension", edit_borrow_extension_path(@borrow_extension) %> |
+  <%= link_to "Back to borrow extensions", borrow_extensions_path %>
+
+  <%= button_to "Destroy this borrow extension", @borrow_extension, method: :delete %>
+</div>

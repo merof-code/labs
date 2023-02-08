@@ -1,0 +1,52 @@
+<%= form_with(model: card) do |form| %>
+  <% if card.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+      <ul>
+        <% card.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :photo, style: "display: block" %>
+    <%= form.text_field :photo %>
+  </div>
+
+  <div>
+    <%= form.label :issuer_id, style: "display: block" %>
+    <%= form.text_field :issuer_id %>
+  </div>
+
+  <div>
+    <%= form.label :active, style: "display: block" %>
+    <%= form.check_box :active %>
+  </div>
+
+  <div>
+    <%= form.label :lost, style: "display: block" %>
+    <%= form.text_field :lost %>
+  </div>
+
+  <div>
+    <%= form.label :issue_date, style: "display: block" %>
+    <%= form.datetime_field :issue_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

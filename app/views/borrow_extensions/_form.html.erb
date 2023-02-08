@@ -1,0 +1,47 @@
+<%= form_with(model: borrow_extension) do |form| %>
+  <% if borrow_extension.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(borrow_extension.errors.count, "error") %> prohibited this borrow_extension from being saved:</h2>
+
+      <ul>
+        <% borrow_extension.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :Borrow_id, style: "display: block" %>
+    <%= form.text_field :Borrow_id %>
+  </div>
+
+  <div>
+    <%= form.label :ExtensionReason_id, style: "display: block" %>
+    <%= form.text_field :ExtensionReason_id %>
+  </div>
+
+  <div>
+    <%= form.label :approver_id, style: "display: block" %>
+    <%= form.number_field :approver_id %>
+  </div>
+
+  <div>
+    <%= form.label :extended_days, style: "display: block" %>
+    <%= form.number_field :extended_days %>
+  </div>
+
+  <div>
+    <%= form.label :new_return_date, style: "display: block" %>
+    <%= form.date_field :new_return_date %>
+  </div>
+
+  <div>
+    <%= form.label :cost, style: "display: block" %>
+    <%= form.text_field :cost %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

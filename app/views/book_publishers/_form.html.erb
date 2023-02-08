@@ -1,0 +1,37 @@
+<%= form_with(model: book_publisher) do |form| %>
+  <% if book_publisher.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(book_publisher.errors.count, "error") %> prohibited this book_publisher from being saved:</h2>
+
+      <ul>
+        <% book_publisher.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :cover_pic, style: "display: block" %>
+    <%= form.text_field :cover_pic %>
+  </div>
+
+  <div>
+    <%= form.label :book_title_id, style: "display: block" %>
+    <%= form.text_field :book_title_id %>
+  </div>
+
+  <div>
+    <%= form.label :Publisher_id, style: "display: block" %>
+    <%= form.text_field :Publisher_id %>
+  </div>
+
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

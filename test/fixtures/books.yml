@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  BookPublisher: one
+  bought: 2023-02-09 00:00:28
+  decommissioned: 2023-02-09 00:00:28
+  monetary_value: 9.99
+  comments: MyString
+
+two:
+  BookPublisher: two
+  bought: 2023-02-09 00:00:28
+  decommissioned: 2023-02-09 00:00:28
+  monetary_value: 9.99
+  comments: MyString

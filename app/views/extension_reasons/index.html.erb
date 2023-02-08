@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Extension reasons</h1>
+
+<div id="extension_reasons">
+  <% @extension_reasons.each do |extension_reason| %>
+    <%= render extension_reason %>
+    <p>
+      <%= link_to "Show this extension reason", extension_reason %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New extension reason", new_extension_reason_path %>

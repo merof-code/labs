@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nickname: MyString
+  pfp: MyString
+  email: MyString
+  phone_number: MyString
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  role: one
+  department: one
+  start_date: 2023-02-09 00:00:17
+  end_date: 2023-02-09 00:00:17
+
+two:
+  nickname: MyString
+  pfp: MyString
+  email: MyString
+  phone_number: MyString
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  role: two
+  department: two
+  start_date: 2023-02-09 00:00:17
+  end_date: 2023-02-09 00:00:17

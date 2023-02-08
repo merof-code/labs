@@ -1,0 +1,2 @@
+class ExtensionReason < ApplicationRecord
+end
