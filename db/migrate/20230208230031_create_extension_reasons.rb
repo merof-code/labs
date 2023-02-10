@@ -1,9 +1,9 @@
 class CreateExtensionReasons < ActiveRecord::Migration[7.0]
   def change
     create_table :extension_reasons do |t|
-      t.string :name
+      t.string :name, null: false
       t.string :description
-      t.datetime :start_date
+      t.datetime :start_date, null: false
       t.datetime :end_date
 
       t.timestamps

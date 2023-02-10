@@ -3,10 +3,10 @@ class CreateCards < ActiveRecord::Migration[7.0]
     create_table :cards do |t|
       t.references :user, null: false, foreign_key: true
       t.string :photo
-      t.string :issuer_id
-      t.boolean :active
-      t.string :lost
-      t.datetime :issue_date
+      t.references :issuer, references: :user, foreign_key: { to_table: :users}, null: false
+      t.boolean :active, true
+      t.boolean :lost, false
+      t.datetime :issue_date, null: false
       t.date :end_date
 
       t.timestamps
