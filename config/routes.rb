@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'home/index'
+  get 'home/dashboard'
+  devise_for :users
+  root to: "home#index"
   resources :borrow_extensions
   resources :extension_reasons
   resources :borrows
@@ -14,7 +18,4 @@ Rails.application.routes.draw do
   resources :roles
   resources :departments
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
