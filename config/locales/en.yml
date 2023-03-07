@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  main:
+    home: 'Home'
+    dashboard: 'Dashboard'

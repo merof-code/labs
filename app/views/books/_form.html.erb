@@ -1,7 +1,8 @@
 <%= form_with(model: book) do |form| %>
   <% if book.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+    <div style="is-error">
+      <h2><%= pluralize(book.errors.count, "error") %>
+        prohibited this book from being saved:</h2>
 
       <ul>
         <% book.errors.each do |error| %>
@@ -10,33 +11,46 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :BookPublisher_id, style: "display: block" %>
-    <%= form.text_field :BookPublisher_id %>
+  <div class="field">
+    <%= form.label :BookPublisher_id, class: "label" %>
+    <div class="control">
+      <%= form.text_field :BookPublisher_id, class: "input", autofocus: true %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :bought, style: "display: block" %>
-    <%= form.datetime_field :bought %>
+  <div class="field is-grouped">
+    <div class="field column pl-0">
+      <%= form.label :bought, class: "label" %>
+      <div class="control">
+        <%= form.date_field :bought, class: "input" %>
+      </div>
+    </div>
+
+    <div class="field column pr-0">
+      <%= form.label :decommissioned, class: "label" %>
+      <div class="control">
+        <%= form.date_field :decommissioned, class: "input" %>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :decommissioned, style: "display: block" %>
-    <%= form.datetime_field :decommissioned %>
+  <div class="field">
+    <%= form.label :monetary_value, class: "label" %>
+    <div class="control">
+      <%= form.text_field :monetary_value, class: "input" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :monetary_value, style: "display: block" %>
-    <%= form.text_field :monetary_value %>
+  <div class="field">
+    <%= form.label :comments, class: "label" %>
+    <div class="control">
+      <%= form.text_field :comments, class: "input" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :comments, style: "display: block" %>
-    <%= form.text_field :comments %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="field">
+    <div class="control">
+      <%= form.submit class: "button is-link" %>
+    </div>
   </div>
 <% end %>
