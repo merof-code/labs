@@ -9,10 +9,14 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
+      <div class="notification is-primary">
+        <%= notice %>
+      </div>
     <% end %>
     <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
+      <div class="notification is-warning">
+        <%= alert %>
+      </div>
     <% end %>
   </head>
   <body>
@@ -22,22 +26,17 @@
           <img src="favicon.svg" height="28">
         </a>
       </div>
-    
+
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item">
-            Home
-          </a>
-    
-          <a class="navbar-item">
-            Documentation
-          </a>
-    
+          <a class="navbar-item"><%= t("main.home") %></a>
+          <a class="navbar-item"><%= t("main.dashboard") %></a>
+
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
               More
             </a>
-    
+
             <div class="navbar-dropdown">
               <a class="navbar-item">
                 About
@@ -55,9 +54,12 @@
             </div>
           </div>
         </div>
-    
+
         <div class="navbar-end">
           <div class="navbar-item">
+            <a class="navbar-item">
+              <%= current_user.name %>
+            </a>
             <div class="buttons">
               <a class="button is-primary">
                 <strong>Sign up</strong>
