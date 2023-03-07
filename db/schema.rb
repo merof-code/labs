@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_205219) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_12_200209) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -114,11 +114,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_205219) do
 
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "department_id"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_departments_on_department_id"
     t.index ["name"], name: "index_departments_on_name", unique: true
   end
 
@@ -212,7 +210,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_205219) do
   add_foreign_key "borrows", "users", column: "return_inspector_id_id"
   add_foreign_key "cards", "users"
   add_foreign_key "cards", "users", column: "issuer_id"
-  add_foreign_key "departments", "departments"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
   add_foreign_key "users", "departments"
