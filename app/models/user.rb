@@ -6,4 +6,8 @@ class User < ApplicationRecord
          :lockable, :trackable
   belongs_to :role
   belongs_to :department
+
+  def name 
+    "sdf" # TODO: add name def
+  end
 end
