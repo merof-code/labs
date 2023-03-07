@@ -34,3 +34,5 @@ en:
   main:
     home: 'Home'
     dashboard: 'Dashboard'
+    sign_in: 'Sign in'
+    sign_up: 'Sign up'
