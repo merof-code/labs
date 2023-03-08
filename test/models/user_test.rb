@@ -29,12 +29,13 @@ class UserTest < ActiveSupport::TestCase
 
   test 'start_date must default to today' do
     u = User.new
-    assert u.start_date.to_date == DateTime.now.to_date
+    assert_not_nil u.start_date, 'start_date was nil'
+    assert_equal u.start_date.to_date, DateTime.now.to_date
   end
 
   test 'start_date must be less then end_date' do
     u = User.new(end_date: DateTime.now.yesterday)
-    assert u.invalid?
+    user_has_error_on_attr(u, :end_date)
   end
 
   def user_has_error_on_attr(user, attr)
