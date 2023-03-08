@@ -17,4 +17,9 @@ class User < ApplicationRecord
   def name
     'sdf' # TODO: add name def
   end
+
+  def random_password(length = 10)
+    o = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
+    (0...length).map { o[rand(o.length)] }.join
+  end
 end
