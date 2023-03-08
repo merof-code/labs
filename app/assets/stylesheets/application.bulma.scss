@@ -39,3 +39,16 @@
 @import 'bulma-checkradio/dist/css/bulma-checkradio';
 @import 'bulma/bulma';
 is-overflow-hidden { overflow-y: hidden; }
+
+.is-flex {
+  .field {
+    margin: 0 0.2rem;
+  }
+
+  .field:first-child {
+    margin-left: 0;
+  }
+  .field:last-child {
+    margin-right: 0;
+  }
+}
