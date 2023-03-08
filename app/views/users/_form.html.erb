@@ -11,104 +11,135 @@
       </ul>
     </div>
   <% end %>
+  <div class=columns>
+    <div class="column is-one-fifth">
+      <figure class="image is-128x128">
+        <%= image_tag user.avatar_path %>
+      </figure>
+      <br>
+      <%= form.file_field :avatar, class: "file-input" %>
+      <%# has-name is-boxed %>
+      <div class="file is-small">
+        <%= form.file_field :avatar, class: "file-input" %>
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fas fa-upload"></i>
+          </span>
+          <span class="file-label">
+            <%= t("main.choose_a_file") %>
+          </span>
+        </span>
+      </div>
 
-  <div class="field">
-    <%= form.label :nickname, class: "label" %>
-    <div class="control">
-      <%= form.text_field :nickname, class: "input" %>
     </div>
-  </div>
+    <div class=column>
+      <div class="is-flex">
+        <div class="field">
+          <%= form.label :last_name, class: "label" %>
+          <div class="control">
+            <%= form.text_field :last_name, class: "input", autofocus: true %>
+          </div>
+        </div>
+        <div class="field">
+          <%= form.label :first_name, class: "label" %>
+          <div class="control">
+            <%= form.text_field :first_name, class: "input" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :pfp, class: "label" %>
-    <div class="control">
-      <%= form.text_field :pfp, class: "input" %>
-    </div>
-  </div>
+        <div class="field">
+          <%= form.label :middle_name, class: "label" %>
+          <div class="control">
+            <%= form.text_field :middle_name, class: "input" %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :email, class: "label" %>
-    <div class="control">
-      <%= form.text_field :email, class: "input" %>
-    </div>
-  </div>
+      <div class="field">
+        <%= form.label :nickname, class: "label" %>
+        <div class="control">
+          <%= form.text_field :nickname, class: "input" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= form.label :phone_number, class: "label" %>
+        <div class="control">
+          <%= form.text_field :phone_number, class: "input" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :phone_number, class: "label" %>
-    <div class="control">
-      <%= form.text_field :phone_number, class: "input" %>
-    </div>
-  </div>
+      <div class="field">
+        <%= form.label :email, class: "label" %>
+        <div class="control">
+          <%= form.text_field :email, class: "input" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :first_name, class: "label" %>
-    <div class="control">
-      <%= form.text_field :first_name, class: "input" %>
-    </div>
-  </div>
+      <div class="is-flex">
+        <div class="field pr-2">
+          <%= form.label :role_id, class: "label" %>
+          <div class="select is-medium">
+            <%= form.collection_select :role_id, Role.all, :id, :name, class: "input" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :last_name, class: "label" %>
-    <div class="control">
-      <%= form.text_field :last_name, class: "input" %>
-    </div>
-  </div>
+        <div class="field">
+          <%= form.label :department_id, class: "label" %>
+          <div class="select is-medium">
+            <%= form.collection_select :department_id,
+                                   Department.all,
+                                   :id,
+                                   :name,
+                                   class: "input" %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :middle_name, class: "label" %>
-    <div class="control">
-      <%= form.text_field :middle_name, class: "input" %>
-    </div>
-  </div>
+      <div class="is-flex">
+        <div class="field">
+          <%= form.label :start_date, class: "label" %>
+          <div class="control">
+            <%= form.date_field :start_date, class: "input" %>
+          </div>
+        </div>
+        <div class="field">
+          <%= form.label :start_date, class: "label" %>
+          <div class="control">
+            <%= form.time_field :start_date,
+                            ignore_date: true,
+                            class: "input",
+                            value: "%H:%M",
+                            min: "hh:mm:ss",
+                            max: "hh:mm:ss" %>
+          </div>
+        </div>
+      </div>
 
-  <div class="is-flex">
-    <div class="field pr-2">
-      <%= form.label :role_id, class: "label" %>
-      <div class="select is-medium">
-        <%= form.collection_select :role_id, Role.all, :id, :name, class: "input" %>
+      <div class="is-flex">
+        <div class="field">
+          <%= form.label :end_date, class: "label" %>
+          <div class="control">
+            <%= form.date_field :end_date, class: "input" %>
+          </div>
+        </div>
+        <div class="field">
+          <%= form.label :end_date, class: "label" %>
+          <div class="control">
+            <%= form.time_field :end_date,
+                            ignore_date: true,
+                            class: "input",
+                            value: "%H:%M",
+                            min: "hh:mm:ss",
+                            max: "hh:mm:ss" %>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="field">
-      <%= form.label :department_id, class: "label" %>
-      <div class="select is-medium">
-        <%= form.collection_select :department_id,
-                               Department.all,
-                               :id,
-                               :name,
-                               class: "input" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="is-flex">
-    <div class="field">
-      <%= form.label :start_date, class: "label" %>
-      <div class="control">
-        <%= form.date_field :start_date, class: "input" %>
-      </div>
-    </div>
-    <div class="field">
-      <%= form.label :start_date, class: "label" %>
-      <div class="control">
-        <%= form.time_field :start_date,
-                        ignore_date: true,
-                        class: "input",
-                        value: "%H:%M",
-                        min: "hh:mm:ss",
-                        max: "hh:mm:ss" %>
-      </div>
-    </div>
   </div>
 
   <div class="field">
-    <%= form.label :end_date, class: "label" %>
     <div class="control">
-      <%= form.datetime_field :end_date, class: "input" %>
+      <%= form.submit class: "button is-link" %>
     </div>
-  </div>
-
-  <div>
-    <%= form.submit %>
   </div>
 <% end %>

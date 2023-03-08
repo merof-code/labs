@@ -8,23 +8,13 @@
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <% if notice %>
-      <div class="notification is-primary">
-        <%= notice %>
-      </div>
-    <% end %>
-    <% if alert %>
-      <div class="notification is-warning">
-        <%= alert %>
-      </div>
-    <% end %>
   </head>
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="favicon.svg" height="28">
-        </a>
+        <%= link_to root_path, class:"navbar-item" do %>
+          <%= image_tag "favicon.svg" %>
+        <% end %>
       </div>
 
       <div id="navbarBasicExample" class="navbar-menu">
@@ -69,6 +59,16 @@
         </div>
       </div>
     </nav>
+    <% if notice %>
+      <div class="notification is-primary container">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="notification is-warning">
+        <%= alert %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
