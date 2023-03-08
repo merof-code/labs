@@ -1,3 +1,3 @@
 class Department < ApplicationRecord
-  belongs_to :department
+  # belongs_to :department
 end

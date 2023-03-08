@@ -5,25 +5,28 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+User.delete_all
 Role.delete_all
-['Student', 'Librarian', 'Admin'].each do |r|
+Department.delete_all
+%w[Student Librarian Admin].each do |r|
   Role.create(name: r)
 end
 puts Role.all
 
-Department.delete_all
-['Students', 'Librarians', 'Admins'].each do |r|
+%w[Students Librarians Admins].each do |r|
   Department.create(name: r)
 end
 puts Department.all
 
-User.delete_all
 users = User.create(
   nickname: 'admin',
+  first_name: 'fi',
+  last_name: 'la',
+  middle_name: 'mi',
   email: 'admin@example.com',
   role: Role.find_by(name: 'Admin'),
   start_date: DateTime.now,
-  department_id: Department.find_by(name: 'Admins'),
-  encrypted_password: '123456'
+  department: Department.find_by(name: 'Admins'),
+  password: '1234567890qwe'
 )
 puts User.all

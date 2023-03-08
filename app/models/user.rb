@@ -7,7 +7,10 @@ class User < ApplicationRecord
   belongs_to :role
   belongs_to :department
 
-  def name 
-    "sdf" # TODO: add name def
+  validates :nickname, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  
+  def name
+    'sdf' # TODO: add name def
   end
 end
