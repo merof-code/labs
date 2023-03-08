@@ -1,27 +1,27 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  nickname: MyString
+Bob:
+  nickname: bob
   pfp: MyString
-  email: MyString
-  phone_number: MyString
-  first_name: MyString
-  last_name: MyString
-  middle_name: MyString
-  role: one
-  department: one
+  email: bob@example.com
+  phone_number: +100212012
+  first_name: name
+  last_name: last_name
+  middle_name: middle_name
+  role: admin
+  department: admins
   start_date: 2023-02-09 00:00:17
   end_date: 2023-02-09 00:00:17
 
-two:
-  nickname: MyString
+Alice:
+  nickname: alice
   pfp: MyString
-  email: MyString
-  phone_number: MyString
-  first_name: MyString
-  last_name: MyString
-  middle_name: MyString
-  role: two
-  department: two
+  email: email@example.com
+  phone_number: 12312
+  first_name: first_name
+  last_name: last_name
+  middle_name: middle_name
+  role: student
+  department: students
   start_date: 2023-02-09 00:00:17
   end_date: 2023-02-09 00:00:17

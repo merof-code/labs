@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  department: one
-  description: MyString
+admin:
+  name: Admin
+  # department: Admins
+  description: admins only
 
-two:
-  name: MyString
-  department: two
-  description: MyString
+students:
+  name: Students
+  # department: two
+  description: students from all around

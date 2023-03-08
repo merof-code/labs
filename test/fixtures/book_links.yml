@@ -5,5 +5,5 @@ one:
   link: MyString
 
 two:
-  BookPublisher: two
+  Book_Publisher: two
   link: MyString
