@@ -1,0 +1,4 @@
+---
+include:
+- "app/*.rb"
+max_files: 5000
