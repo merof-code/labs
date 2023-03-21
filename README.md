@@ -13,21 +13,24 @@
 - картки студентів,
 - картки викладачів.
 
-Останні дві таблиці мають на меті облікувати взяття та повернення студентами і викладачами літератури до бібліотеки.
-Для здачі лабораторної роботи необхідно у відповідному завданні Тімс закріпити два файли:
-- Рисунок повної схеми бази даних із взаємозв'язками
-- SQL-код схеми бази даних або .mdb-файл (у випадку використання у Microsoft Access)
-
-Структура бази даних повинна бути побудована логічно та повно у своїй предметній області, повторення даних має бути мінімізовано.
-
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+# features
+authentication with devise
+has one table for all users
+uses cancancan for roles
+users have a 
 
-* System dependencies
+# versions
+This project uses mostly ruby '3.1.0' and rails ~7
+uses bulma css
+
+
+# System dependencies
+postgres sql
 
 * Configuration
 
@@ -41,4 +44,3 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...

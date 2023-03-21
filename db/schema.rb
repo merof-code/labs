@@ -53,43 +53,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "book_links", force: :cascade do |t|
-    t.bigint "book_publisher_id", null: false
-    t.string "link", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_publisher_id"], name: "index_book_links_on_book_publisher_id"
-  end
-
   create_table "book_publishers", force: :cascade do |t|
     t.string "cover_pic"
-    t.bigint "book_title_id", null: false
+    t.bigint "book_id", null: false
     t.bigint "publisher_id", null: false
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_title_id"], name: "index_book_publishers_on_book_title_id"
+    t.index ["book_id"], name: "index_book_publishers_on_book_id"
     t.index ["publisher_id"], name: "index_book_publishers_on_publisher_id"
   end
 
-  create_table "book_titles", force: :cascade do |t|
-    t.string "name", null: false
-    t.date "published_at", null: false
-    t.bigint "author_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_book_titles_on_author_id"
-  end
-
   create_table "books", force: :cascade do |t|
-    t.bigint "book_publisher_id", null: false
-    t.datetime "bought", null: false
-    t.datetime "decommissioned"
-    t.decimal "monetary_value", precision: 10, scale: 2, default: "0.0", null: false
-    t.string "comments"
+    t.string "name", null: false
+    t.bigint "publisher_id", null: false
+    t.date "published_at", null: false
+    t.string "edition"
+    t.string "format"
+    t.string "synopsis"
+    t.string "language"
+    t.string "ISBN"
+    t.string "genre"
+    t.integer "number_of_pages"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_publisher_id"], name: "index_books_on_book_publisher_id"
+    t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
   create_table "borrow_extensions", force: :cascade do |t|
@@ -99,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
     t.integer "extended_days", default: 10, null: false
     t.date "new_return_date", null: false
     t.decimal "cost", precision: 10, scale: 2, default: "0.0", null: false
+    t.string "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["approver_id_id"], name: "index_borrow_extensions_on_approver_id_id"
@@ -107,19 +96,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
   end
 
   create_table "borrows", force: :cascade do |t|
-    t.bigint "book_id", null: false
+    t.bigint "physical_book_id", null: false
     t.bigint "user_id", null: false
     t.bigint "approver_id_id", null: false
     t.bigint "return_inspector_id_id", null: false
     t.datetime "borrow_date", null: false
-    t.datetime "return_date", null: false
+    t.datetime "original_return_date", null: false
     t.datetime "returned_at"
     t.decimal "cost", precision: 10, scale: 2, default: "0.0", null: false
     t.string "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["approver_id_id"], name: "index_borrows_on_approver_id_id"
-    t.index ["book_id"], name: "index_borrows_on_book_id"
+    t.index ["physical_book_id"], name: "index_borrows_on_physical_book_id"
     t.index ["return_inspector_id_id"], name: "index_borrows_on_return_inspector_id_id"
     t.index ["user_id"], name: "index_borrows_on_user_id"
   end
@@ -142,9 +131,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
 
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
+    t.bigint "department_id"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_departments_on_department_id"
     t.index ["name"], name: "index_departments_on_name", unique: true
   end
 
@@ -165,11 +156,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
     t.index ["name"], name: "index_permissions_on_name", unique: true
   end
 
+  create_table "physical_books", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.datetime "bought", null: false
+    t.datetime "decommissioned"
+    t.decimal "monetary_value", precision: 10, scale: 2, default: "0.0", null: false
+    t.string "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_physical_books_on_book_id"
+  end
+
   create_table "publishers", force: :cascade do |t|
-    t.string "photo"
     t.string "name", null: false
-    t.string "link", null: false
+    t.string "link"
     t.string "country"
+    t.string "address"
+    t.string "email"
+    t.string "website"
+    t.integer "founded_year"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -226,20 +232,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "book_links", "book_publishers"
-  add_foreign_key "book_publishers", "book_titles"
+  add_foreign_key "book_publishers", "books"
   add_foreign_key "book_publishers", "publishers"
-  add_foreign_key "book_titles", "authors"
-  add_foreign_key "books", "book_publishers"
   add_foreign_key "borrow_extensions", "borrows"
   add_foreign_key "borrow_extensions", "extension_reasons"
   add_foreign_key "borrow_extensions", "users", column: "approver_id_id"
-  add_foreign_key "borrows", "books"
+  add_foreign_key "borrows", "physical_books"
   add_foreign_key "borrows", "users"
   add_foreign_key "borrows", "users", column: "approver_id_id"
   add_foreign_key "borrows", "users", column: "return_inspector_id_id"
   add_foreign_key "cards", "users"
   add_foreign_key "cards", "users", column: "issuer_id"
+  add_foreign_key "departments", "departments"
+  add_foreign_key "physical_books", "books"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
   add_foreign_key "users", "departments"

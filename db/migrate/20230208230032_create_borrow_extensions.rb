@@ -7,6 +7,7 @@ class CreateBorrowExtensions < ActiveRecord::Migration[7.0]
       t.integer :extended_days, null: false, default: 10
       t.date :new_return_date, null: false
       t.decimal :cost, precision: 10, scale: 2, null: false, default: 0
+      t.string :comments
 
       t.timestamps
     end

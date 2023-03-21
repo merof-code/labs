@@ -1,4 +1,12 @@
 <div class="hero is-fullheight has-background-dark is-overflow-hidden">
+
+<%= turbo_frame_tag 'flash_messages' do %>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+    <% end %>
+  <% end %>
+
+  
   <div class="hero-body container">
     <div class="box has-background-light m-3 ">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

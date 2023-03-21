@@ -1,0 +1,2 @@
+class PhysicalBooksController < ApplicationController
+end

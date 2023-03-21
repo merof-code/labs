@@ -1,0 +1,2 @@
+class PhysicalBook < ApplicationRecord
+end
