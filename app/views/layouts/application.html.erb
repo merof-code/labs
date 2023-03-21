@@ -47,15 +47,16 @@
         </div>
 
         <div class="navbar-end">
-          <div class="navbar-item">
-            <a class="navbar-item">
-              <%= current_user.name %>
-            </a>
+          <% if user_signed_in? %>
+            <div class="navbar-item">
+            <%= current_user.name %>
+            </div>
+          <% else %>
             <div class="buttons">
               <%= link_to t("main.sign_in"), new_user_session_path, class: "button is-primary" %>
               <%= link_to t("main.sign_up"), new_user_registration_path, class: "button is-light" %>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </nav>

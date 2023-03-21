@@ -12,12 +12,11 @@
     </div>
   <% end %>
   <div class=columns>
-    <div class="column is-one-fifth">
+    <div class="column is-one-forth">
       <figure class="image is-128x128">
         <%= image_tag user.avatar_path %>
       </figure>
       <br>
-      <%= form.file_field :avatar, class: "file-input" %>
       <%# has-name is-boxed %>
       <div class="file is-small">
         <%= form.file_field :avatar, class: "file-input" %>
