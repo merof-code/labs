@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Randomizable
   # Include default devise modules. Others available are:
   # :confirmable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -22,15 +23,19 @@ class User < ApplicationRecord
   end
 
   def set_defaults
-    password ||= random_password
+    self.password ||= random_password
   end
 
   def random_password(length = 10)
-    o = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
-    (0...length).map { o[rand(o.length)] }.join
+    User.random_password(length)
   end
 
   def avatar_path
     avatar.attached? ? avatar : 'default_avatar.jpg'
+  end
+
+  def self.random_password(length = 10)
+    o = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
+    (0...length).map { o[rand(o.length)] }.join
   end
 end

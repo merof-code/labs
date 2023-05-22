@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_22_004841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +43,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
   end
 
   create_table "authors", force: :cascade do |t|
-    t.string "photo", null: false
     t.string "first_name", limit: 15, null: false
     t.string "last_name", limit: 15, null: false
     t.string "middle_name", limit: 15, null: false
@@ -53,15 +52,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "book_publishers", force: :cascade do |t|
-    t.string "cover_pic"
+  create_table "book_authors", force: :cascade do |t|
     t.bigint "book_id", null: false
-    t.bigint "publisher_id", null: false
-    t.date "date", null: false
+    t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_book_publishers_on_book_id"
-    t.index ["publisher_id"], name: "index_book_publishers_on_publisher_id"
+    t.index ["author_id"], name: "index_book_authors_on_author_id"
+    t.index ["book_id"], name: "index_book_authors_on_book_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -98,18 +95,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
   create_table "borrows", force: :cascade do |t|
     t.bigint "physical_book_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "approver_id_id", null: false
-    t.bigint "return_inspector_id_id", null: false
+    t.bigint "approver_id", null: false
+    t.bigint "return_inspector_id", null: false
     t.datetime "borrow_date", null: false
-    t.datetime "original_return_date", null: false
+    t.datetime "scheduled_return_date", null: false
     t.datetime "returned_at"
     t.decimal "cost", precision: 10, scale: 2, default: "0.0", null: false
     t.string "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["approver_id_id"], name: "index_borrows_on_approver_id_id"
+    t.index ["approver_id"], name: "index_borrows_on_approver_id"
     t.index ["physical_book_id"], name: "index_borrows_on_physical_book_id"
-    t.index ["return_inspector_id_id"], name: "index_borrows_on_return_inspector_id_id"
+    t.index ["return_inspector_id"], name: "index_borrows_on_return_inspector_id"
     t.index ["user_id"], name: "index_borrows_on_user_id"
   end
 
@@ -147,6 +144,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_extension_reasons_on_name"
+  end
+
+  create_table "facultie_groups", force: :cascade do |t|
+    t.bigint "facultie_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facultie_id"], name: "index_facultie_groups_on_facultie_id"
+    t.index ["group_id"], name: "index_facultie_groups_on_group_id"
+  end
+
+  create_table "faculties", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -196,6 +214,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
     t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
+  create_table "student_infos", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "year"
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_student_infos_on_group_id"
+    t.index ["user_id"], name: "index_student_infos_on_user_id"
+  end
+
+  create_table "teacher_infos", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "admission_date"
+    t.bigint "facultie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facultie_id"], name: "index_teacher_infos_on_facultie_id"
+    t.index ["user_id"], name: "index_teacher_infos_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "nickname", limit: 30
     t.string "pfp"
@@ -222,6 +260,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "type"
     t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["nickname"], name: "index_users_on_nickname", unique: true
@@ -232,21 +271,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_210425) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "book_publishers", "books"
-  add_foreign_key "book_publishers", "publishers"
+  add_foreign_key "book_authors", "authors"
+  add_foreign_key "book_authors", "books"
   add_foreign_key "borrow_extensions", "borrows"
   add_foreign_key "borrow_extensions", "extension_reasons"
   add_foreign_key "borrow_extensions", "users", column: "approver_id_id"
   add_foreign_key "borrows", "physical_books"
   add_foreign_key "borrows", "users"
-  add_foreign_key "borrows", "users", column: "approver_id_id"
-  add_foreign_key "borrows", "users", column: "return_inspector_id_id"
+  add_foreign_key "borrows", "users", column: "approver_id"
+  add_foreign_key "borrows", "users", column: "return_inspector_id"
   add_foreign_key "cards", "users"
   add_foreign_key "cards", "users", column: "issuer_id"
   add_foreign_key "departments", "departments"
+  add_foreign_key "facultie_groups", "faculties", column: "facultie_id"
+  add_foreign_key "facultie_groups", "groups"
   add_foreign_key "physical_books", "books"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
+  add_foreign_key "student_infos", "groups"
+  add_foreign_key "student_infos", "users"
+  add_foreign_key "teacher_infos", "faculties", column: "facultie_id"
+  add_foreign_key "teacher_infos", "users"
   add_foreign_key "users", "departments"
   add_foreign_key "users", "roles"
 end

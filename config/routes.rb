@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :faculties
+  resources :groups
   resources :books
   resources :physical_books
   get 'home/index'
@@ -9,7 +11,6 @@ Rails.application.routes.draw do
   resources :extension_reasons
   resources :borrows
   resources :book_links
-  resources :book_publishers
   resources :publishers
   resources :authors
   resources :cards
