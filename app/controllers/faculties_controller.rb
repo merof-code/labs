@@ -65,6 +65,6 @@ class FacultiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def faculty_params
-      params.require(:faculty).permit(:name)
+      params.require(:facultie).permit(:name)
     end
 end

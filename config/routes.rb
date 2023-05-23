@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+  resources :physical_books
   resources :librarians
   resources :professors
   resources :students
   resources :faculties
   resources :groups
   resources :books
-  resources :physical_books
   get 'home/index'
   get 'home/dashboard'
   devise_for :users

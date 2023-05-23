@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @physical_book %>
+
+<div>
+  <%= link_to "Edit this physical book", edit_physical_book_path(@physical_book) %> |
+  <%= link_to "Back to physical books", physical_books_path %>
+
+  <%= button_to "Destroy this physical book", @physical_book, method: :delete %>
+</div>

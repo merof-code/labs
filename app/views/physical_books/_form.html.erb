@@ -1,0 +1,42 @@
+<%= form_with(model: physical_book) do |form| %>
+  <% if physical_book.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(physical_book.errors.count, "error") %> prohibited this physical_book from being saved:</h2>
+
+      <ul>
+        <% physical_book.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :bought, style: "display: block" %>
+    <%= form.datetime_field :bought %>
+  </div>
+
+  <div>
+    <%= form.label :decommissioned, style: "display: block" %>
+    <%= form.datetime_field :decommissioned %>
+  </div>
+
+  <div>
+    <%= form.label :monetary_value, style: "display: block" %>
+    <%= form.text_field :monetary_value %>
+  </div>
+
+  <div>
+    <%= form.label :comments, style: "display: block" %>
+    <%= form.text_field :comments %>
+  </div>
+
+  <div>
+    <%= form.label :book_id, style: "display: block" %>
+    <%= form.text_field :book_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
