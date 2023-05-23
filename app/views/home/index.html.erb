@@ -1,11 +1,36 @@
 <h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
 should have authent
 <div class="buttons">
-  <%= link_to "Books", books_path, class: "button" %>
-  <%= link_to "Borrows", borrows_path, class: "button" %>
-  <%= link_to "Cards", cards_path, class: "button" %>
-  <%= link_to "Users", users_path, class: "button" %>
-  <%= link_to "Roles", roles_path, class: "button" %>
 
+  <div class="columns">
+    <div class="column ">
+      <div class="bd-notification is-primary" >
+        Інформація користувачів:
+      </div>
+      <%= link_to "Roles", roles_path, class: "button" %>
+      <%= link_to "Users", users_path, class: "button" %>
+      <%= link_to "Cards", cards_path, class: "button" %>
+      <%= link_to "departments", departments_path, class: "button" %>
+      <%= link_to "faculties", faculties_path, class: "button" %>
+      <%= link_to "groups", groups_path, class: "button" %>
+      <%= link_to "publisher", publishers_path, class: "button" %>
+      <%= link_to "permission", permissions_path, class: "button" %>
+    </div>
+    <div class="column">
+      <div class="bd-notification is-primary" >
+        Інформація книг
+      </div>
+      <%= link_to "authors", authors_path, class: "button" %>
+      <%= link_to "Books", books_path, class: "button" %>
+      <%= link_to "phisicall books", physical_books_path, class: "button" %>
+    </div>
+    <div class="column">
+      <div class="bd-notification is-primary" >
+        Інформація книг які беруть користувачі
+      </div>
+      <%= link_to "Borrows", borrows_path, class: "button" %>
+      <%= link_to "Borrows extension", borrow_extensions_path, class: "button" %>
+      <%= link_to "extension_reason", extension_reasons_path, class: "button" %>
+    </div>
+  </div>
 </div>

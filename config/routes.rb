@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :librarians
+  resources :professors
+  resources :students
   resources :faculties
   resources :groups
   resources :books

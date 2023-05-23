@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Librarians</h1>
+
+<div id="librarians">
+  <% @librarians.each do |librarian| %>
+    <%= render librarian %>
+    <p>
+      <%= link_to "Show this librarian", librarian %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New librarian", new_librarian_path %>
