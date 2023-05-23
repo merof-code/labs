@@ -1,10 +1,14 @@
 <h1>Editing student</h1>
+<div class="columns is-centered">
+  <div class="column is-4 mt-5">
+    <%= render "form", student: @student %>
 
-<%= render "form", student: @student %>
-
-<br>
-
-<div>
-  <%= link_to "Show this student", @student %> |
-  <%= link_to "Back to students", students_path %>
+    <br>
+    <div>
+      <%= link_to "Show this student", @student %>
+      |
+      <%= link_to "Back to students", students_path %>
+    </div>
+  </div>
 </div>
+
