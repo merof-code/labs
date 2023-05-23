@@ -2,7 +2,6 @@
 namespace :db do
   namespace :seed do
     Dir[Rails.root.join('db', 'seeds', '*.rb')].each do |filename|
-      File.write('here.txt', 'i do work')
       # to adhear 000_*.rb format
       base_name = File.basename(filename, '.rb')
       task_name = base_name[4..-1]

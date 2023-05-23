@@ -19,7 +19,7 @@ Book.all.each do |book|
     PhysicalBook.create(
       book:,
       bought: generate_random_date_years_ago(50),
-      monetary_value: rand(10.1000).to_f / 100
+      monetary_value: rand(10..1000).to_f / 100
     )
   end
 end

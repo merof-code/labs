@@ -28,11 +28,24 @@ ex: [`007_borrows.rb`](./db/seeds/007_borrows.rb)
 
 to see all available seed do `rails db:seed -h`
 
+then you can see row counts with 
+```sql
+WITH tbl AS (
+  SELECT table_schema, TABLE_NAME
+  FROM information_schema.tables
+  WHERE TABLE_NAME not like 'pg_%' AND table_schema in ('public'))
+SELECT table_schema, TABLE_NAME,
+  (xpath('/row/c/text()', query_to_xml(format('select count(*) as c from %I.%I', table_schema, TABLE_NAME), FALSE, TRUE, '')))[1]::text::int AS rows_n
+FROM tbl
+ORDER BY rows_n DESC;
+```
+
 # features
 authentication with devise
 has one table for all users
 uses cancancan for roles
 users have a 
+has seeding with faker
 
 # versions
 This project uses mostly ruby '3.1.0' and rails ~7
@@ -61,6 +74,7 @@ this was initially set up with
 
 bundle install gem devise
 bundle install gem cancancan
+```
 rails g scaffold Department name:string:uniq:index department:references description:string
 rails g scaffold Role name:string:uniq:index 
 rails g scaffold Permission name:string:uniq:index 
@@ -76,5 +90,5 @@ rails g scaffold Book BookPublisher:references bought:datetime decommissioned:da
 rails g scaffold Borrows Book:references user:references approver_id:integer return_inspector_id:integer borrow_date:datetime return_date:datetime returned_at:datetime 'cost:decimal{10,2}' comments:string
 rails g scaffold ExtensionReason name:string:index:uniq description:string start_date:datetime end_date:datetime
 rails g scaffold BorrowExtension Borrow:references ExtensionReason:references approver_id:integer extended_days:integer new_return_date:date 'cost:decimal{10,2}'
-
+```
 and a lot edits after

@@ -4,6 +4,7 @@ class Borrow < ApplicationRecord
   belongs_to :approver, class_name: "Librarian"
   belongs_to :return_inspector, class_name: "Librarian"
 
+  # returns books borrowed in date range
   scope :borrowed_at, ->(date_from, date_to) {
     where(
       "(

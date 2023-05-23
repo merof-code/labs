@@ -6,16 +6,16 @@ end
 
 def pick_a_book(from)
   loop do
-    physical_book = PhysicalBook.random
-    return if physical_book.available_for_borrow_at(from)
+    physical_book = PhysicalBook.random.reload
+    return physical_book if physical_book.available_for_borrow_at(from)
   end
 end
 
 # creates random borrow for user
 def create_random_borrow(user:)
-  from = user.created_at
+  from = user.start_date
   random_date = generate_random_date(from:, to: DateTime.now)
-  Borrow.create(
+  b = Borrow.create(
     physical_book: pick_a_book(from),
     user:,
     approver: Librarian.random,
@@ -24,11 +24,12 @@ def create_random_borrow(user:)
     scheduled_return_date: from + 14,
     returned_at: from + 12
   )
+  puts b.errors if b.errors.any?
 end
 
 puts 'seeding borrows'
 User.all.each do |u|
-  next if rand < 0.5 # magic for bool
+  next if rand < 0.3 # magic for bool
 
   rand(1..5).times do
     create_random_borrow(user: u)
