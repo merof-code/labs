@@ -1,33 +1,33 @@
 Rails.application.routes.draw do
-  resources :books
   devise_for :users
   get 'home/index'
   get 'home/dashboard'
   root to: "home#index"
-  resources :users do
+
+  concern :searchable do
     collection do
-      get 'search(/:id)', to: 'users#search', as: 'search'
+      get 'search(/:id)', action: 'search', as: 'search'
     end
   end
-  resources :physical_books do
-    collection do
-      get 'search(/:id)', to: 'physical_books#search', as: 'search'
-    end
-  end
-  resources :librarians
-  resources :professors
-  resources :students
+
+  resources :books, concerns: :searchable
+  resources :users, concerns: :searchable
+  resources :groups, concerns: :searchable
+  resources :physical_books, concerns: :searchable
+  resources :authors, concerns: :searchable
+  resources :publishers, concerns: :searchable
   resources :faculties
-  resources :groups
+  resources :borrows
   resources :borrow_extensions
   resources :extension_reasons
-  resources :borrows
-  resources :book_links
-  resources :publishers
-  resources :authors
   resources :cards
+  
   resources :permissions
   resources :roles
   resources :departments
+
+  resources :librarians
+  resources :professors
+  resources :students
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 end

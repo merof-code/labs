@@ -6,6 +6,12 @@ class DepartmentsController < ApplicationController
     @departments = Department.all
   end
 
+  def search
+    @departments = Department.all
+    @departments = @departments.where('name ilike ?', "%#{params[:search_field]}%") if params[:search_field] 
+    render 'index'
+  end
+
   # GET /departments/1 or /departments/1.json
   def show
   end

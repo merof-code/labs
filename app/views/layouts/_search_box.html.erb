@@ -1,0 +1,17 @@
+<%= form_with url: path, method: :get, 
+  data: {controller: "searchnnot", searchn_target: 'form', turbo_frame:frame_name },
+  class:"container" do |f| %>
+    <div class="field has-addons">
+      <div class="control has-icons-left is-expanded">
+        <%= f.text_field :search_field,
+          class: 'input',
+          autocomplete: 'off', autofocus: true,
+          placeholder: 'search by section name (no less then 3 chars)',
+          data: { action: 'input->searchn#search'},
+          value: params[:search_field] %>
+        <span class="icon is-small is-left">
+          <i class="fas fa-search has-text-grey-light"></i>
+        </span>
+      </div>
+    </div>
+<% end %>
