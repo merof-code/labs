@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Authors</h1>
-<%= render partial:'layouts/search_box', locals: {path: search_author_path, frame_name: 'author'} %>
+<%= render partial:'layouts/search_box', locals: {path: authors_path, frame_name: 'authors'} %>
 <div id="authors">
   <% @authors.each do |author| %>
     <%= render author %>

@@ -4,18 +4,18 @@ Rails.application.routes.draw do
   get 'home/dashboard'
   root to: "home#index"
 
-  concern :searchable do
-    collection do
-      get 'search(/:id)', action: 'search', as: 'search'
-    end
-  end
+  # concern :searchable do
+  #   collection do
+  #     get 'search(/:id)', action: 'search', as: 'search'
+  #   end
+  # end
 
-  resources :books, concerns: :searchable
-  resources :users, concerns: :searchable
-  resources :groups, concerns: :searchable
-  resources :physical_books, concerns: :searchable
-  resources :authors, concerns: :searchable
-  resources :publishers, concerns: :searchable
+  resources :books
+  resources :users
+  resources :groups
+  resources :physical_books
+  resources :authors
+  resources :publishers
   resources :faculties
   resources :borrows
   resources :borrow_extensions

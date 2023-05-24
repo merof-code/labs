@@ -3,13 +3,12 @@ class PhysicalBooksController < ApplicationController
 
   # GET /physical_books or /physical_books.json
   def index
-    @physical_books = PhysicalBook.includes(:book).all
-  end
-
-  def search
-    @physical_books = PhysicalBook.joins(:book).all
-    @physical_books = @physical_books.where('books.name ilike ?', "%#{params[:search_field]}%") if params[:search_field]
-    render 'index'
+    if params[:search_field]
+      @physical_books = PhysicalBook.joins(:book).all
+      @physical_books = @physical_books.where('books.name ilike ?', "%#{params[:search_field]}%") 
+    else
+      @physical_books = PhysicalBook.includes(:book).all
+    end
   end
 
   # GET /physical_books/1 or /physical_books/1.json

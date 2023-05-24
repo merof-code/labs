@@ -1,7 +1,7 @@
-<%= form_with(model: borrow) do |form| %>
+<%= form_with(model: borrow, class: 'box') do |form| %>
   <% if borrow.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(borrow.errors.count, "error") %> prohibited this borrow from being saved:</h2>
+    <div class="notification is-danger">
+      <h2 class="title is-4"><%= pluralize(borrow.errors.count, "error") %> prohibited this borrow from being saved:</h2>
 
       <ul>
         <% borrow.errors.each do |error| %>
@@ -11,52 +11,52 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :Book_id, style: "display: block" %>
-    <%= form.text_field :Book_id %>
+  <div class="field">
+    <%= form.label :physical_book_id, class: "label" %>
+    <%= form.collection_select :physical_book_id, @physical_books, :id, :name, {}, {class: "select"} %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <div class="field">
+    <%= form.label :user_id, class: "label" %>
+    <%= form.collection_select :user_id, User.all, :id, :name, {}, {class: "select"} %>
   </div>
 
-  <div>
-    <%= form.label :approver_id, style: "display: block" %>
-    <%= form.number_field :approver_id %>
+  <div class="field">
+    <%= form.label :approver_id, class: "label" %>
+    <%= form.collection_select :approver_id, Librarian.all, :id, :name, {}, {class: "select"} %>
   </div>
 
-  <div>
-    <%= form.label :return_inspector_id, style: "display: block" %>
-    <%= form.number_field :return_inspector_id %>
+  <div class="field">
+    <%= form.label :return_inspector_id, class: "label" %>
+    <%= form.collection_select :return_inspector_id, Librarian.all, :id, :name, {}, {class: "select"} %>
   </div>
 
-  <div>
-    <%= form.label :borrow_date, style: "display: block" %>
-    <%= form.datetime_field :borrow_date %>
+  <div class="field">
+    <%= form.label :borrow_date, class: "label" %>
+    <%= form.datetime_field :borrow_date, class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :return_date, style: "display: block" %>
-    <%= form.datetime_field :return_date %>
+  <div class="field">
+    <%= form.label :return_date, class: "label" %>
+    <%= form.datetime_field :return_date, class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :returned_at, style: "display: block" %>
-    <%= form.datetime_field :returned_at %>
+  <div class="field">
+    <%= form.label :returned_at, class: "label" %>
+    <%= form.datetime_field :returned_at, class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :cost, style: "display: block" %>
-    <%= form.text_field :cost %>
+  <div class="field">
+    <%= form.label :cost, class: "label" %>
+    <%= form.text_field :cost, class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :comments, style: "display: block" %>
-    <%= form.text_field :comments %>
+  <div class="field">
+    <%= form.label :comments, class: "label" %>
+    <%= form.text_field :comments, class: "input" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="field">
+    <%= form.submit class: "button is-primary" %>
   </div>
 <% end %>

@@ -3,7 +3,8 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    @books = Book.includes(:publisher).all
+    @books = @books.where('name ilike ?', "%#{params[:search_field]}%") if params[:search_field]
   end
 
   # GET /books/1 or /books/1.json

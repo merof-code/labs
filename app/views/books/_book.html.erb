@@ -1,52 +1,72 @@
-<div id="<%= dom_id book %>">
-  <p>
-    <strong>Name:</strong>
-    <%= book.name %>
-  </p>
+<div id="<%= dom_id(book) %>" class="box">
+  <div class="columns is-vcentered">
+    <div class="column">
+      <p>
+        <strong>Name:</strong>
+        <%= book.name %>
+      </p>
 
-  <p>
-    <strong>Publisher:</strong>
-    <%= book.Publisher_id %>
-  </p>
+      <p>
+        <strong>Publisher:</strong>
+        <%= book.publisher.name %>
+      </p>
 
-  <p>
-    <strong>Edition:</strong>
-    <%= book.edition %>
-  </p>
+      <p>
+        <strong>Edition:</strong>
+        <%= book.edition %>
+      </p>
 
-  <p>
-    <strong>Published at:</strong>
-    <%= book.published_at %>
-  </p>
+      <p>
+        <strong>Published at:</strong>
+        <%= book.published_at %>
+      </p>
 
-  <p>
-    <strong>Forma:</strong>
-    <%= book.format %>
-  </p>
+      <p>
+        <strong>Format:</strong>
+        <%= book.format %>
+      </p>
 
-  <p>
-    <strong>Synopsis:</strong>
-    <%= book.synopsis %>
-  </p>
+      <p>
+        <strong>Synopsis:</strong>
+        <%= book.synopsis %>
+      </p>
 
-  <p>
-    <strong>Language:</strong>
-    <%= book.language %>
-  </p>
+      <p>
+        <strong>Language:</strong>
+        <%= book.language %>
+      </p>
 
-  <p>
-    <strong>Isbn:</strong>
-    <%= book.ISBN %>
-  </p>
+      <p>
+        <strong>ISBN:</strong>
+        <%= book.ISBN %>
+      </p>
 
-  <p>
-    <strong>Genre:</strong>
-    <%= book.genre %>
-  </p>
+      <p>
+        <strong>Genre:</strong>
+        <%= book.genre %>
+      </p>
 
-  <p>
-    <strong>Number of pages:</strong>
-    <%= book.number_of_pages %>
-  </p>
+      <p>
+        <strong>Number of Pages:</strong>
+        <%= book.number_of_pages %>
+      </p>
+    </div>
+    <div class="column is-narrow">
+      <div class="buttons">
+        <%= link_to edit_book_path(book), class: "button is-primary" do %>
+          <span class="icon">
+            <i class="fas fa-edit"></i>
+          </span>
+          <span>Edit</span>
+        <% end %>
 
+        <%= link_to book, method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-trash-alt"></i>
+          </span>
+          <span>Delete</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

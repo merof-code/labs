@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Books</h1>
-<%= render partial:'layouts/search_box', locals: {path: search_books_path, frame_name: 'books'} %>
+<%= render partial:'layouts/search_box', locals: {path: books_path, frame_name: 'books'} %>
 <div id="books">
   <% @books.each do |book| %>
     <%= render book %>

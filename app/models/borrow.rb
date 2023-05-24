@@ -1,4 +1,6 @@
 class Borrow < ApplicationRecord
+  validates_presence_of :user, message: "can't be blank"
+  validates_presence_of :approver, message: "can't be blank"
   belongs_to :physical_book
   belongs_to :user
   belongs_to :approver, class_name: "Librarian"

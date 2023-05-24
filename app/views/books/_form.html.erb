@@ -17,8 +17,8 @@
   </div>
 
   <div>
-    <%= form.label :Publisher_id, style: "display: block" %>
-    <%= form.text_field :Publisher_id %>
+    <%= form.label :publisher_id, style: "display: block" %>
+    <%= form.collection_select :publisher_id, Publisher.all, :id, :name, prompt: "Select Publisher" %>
   </div>
 
   <div>
@@ -32,7 +32,7 @@
   </div>
 
   <div>
-    <%= form.label :forma, style: "display: block" %>
+    <%= form.label :format, style: "display: block" %>
     <%= form.text_field :format %>
   </div>
 

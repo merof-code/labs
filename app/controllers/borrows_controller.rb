@@ -3,7 +3,7 @@ class BorrowsController < ApplicationController
 
   # GET /borrows or /borrows.json
   def index
-    @borrows = Borrow.all
+    @borrows = Borrow.includes(:return_inspector, :approver, :user).all
   end
 
   # GET /borrows/1 or /borrows/1.json
@@ -17,6 +17,9 @@ class BorrowsController < ApplicationController
 
   # GET /borrows/1/edit
   def edit
+    @physical_books = PhysicalBook.joins(:book)
+    .select("books.name || ' (' || COUNT(*) || ')' AS name")
+      .group('books.name').limit(100)
   end
 
   # POST /borrows or /borrows.json
@@ -65,6 +68,7 @@ class BorrowsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def borrow_params
-      params.require(:borrow).permit(:Book_id, :user_id, :approver_id, :return_inspector_id, :borrow_date, :return_date, :returned_at, :cost, :comments)
+      params.require(:borrow).permit(:Book_id, :user_id, :approver_id, :return_inspector_id, :borrow_date, :scheduled_return_date,
+         :returned_at, :cost, :comments)
     end
 end

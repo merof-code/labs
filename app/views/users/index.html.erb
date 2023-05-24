@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Users</h1>
-<%= render partial:'layouts/search_box', locals: {path: search_users_path, frame_name: 'users'} %>
+<%= render partial:'layouts/search_box', locals: {path: users_path, frame_name: 'users'} %>
 
 <div id="users">
 <%= turbo_frame_tag "users" do %>
