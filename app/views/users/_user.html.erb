@@ -1,57 +1,116 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Nickname:</strong>
-    <%= user.nickname %>
-  </p>
+<div id="<%= dom_id user %>" class="box">
+  <div class="columns is-multiline">
+    <div class="column is-half">
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Nickname:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.nickname %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Pfp:</strong>
-    <%= user.pfp %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Email:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.email %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Email:</strong>
-    <%= user.email %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">First name:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.first_name %>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Last name:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.last_name %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Phone number:</strong>
-    <%= user.phone_number %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Middle name:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.middle_name %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <p>
-    <strong>First name:</strong>
-    <%= user.first_name %>
-  </p>
+    <div class="column is-half">
+      
+<div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Phone number:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.phone_number %>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Role:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.role.name if user.role %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Last name:</strong>
-    <%= user.last_name %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Department:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.department.name if user.department %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Middle name:</strong>
-    <%= user.middle_name %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Start date:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.start_date %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Role:</strong>
-    <%= user.role_id %>
-  </p>
-
-  <p>
-    <strong>Department:</strong>
-    <%= user.department_id %>
-  </p>
-
-  <p>
-    <strong>Start date:</strong>
-    <%= user.start_date %>
-  </p>
-
-  <p>
-    <strong>End date:</strong>
-    <%= user.end_date %>
-  </p>
-
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">End date:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= user.end_date %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

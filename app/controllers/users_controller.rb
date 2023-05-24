@@ -3,7 +3,18 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.includes(:department, :role).all
+  end
+
+  def search
+    @users = User.includes(:department, :role).all
+    if params[:search_field]
+      @users = @users.where('nickname ilike ?', "%#{params[:search_field]}%"
+        # search_field: #,
+        # filed: params[:field]
+      ) 
+    end
+    render 'index'
   end
 
   # GET /users/1 or /users/1.json

@@ -14,11 +14,16 @@ class BooksTest < ApplicationSystemTestCase
     visit books_url
     click_on "New book"
 
-    fill_in "Bookpublisher", with: @book.BookPublisher_id
-    fill_in "Bought", with: @book.bought
-    fill_in "Comments", with: @book.comments
-    fill_in "Decommissioned", with: @book.decommissioned
-    fill_in "Monetary value", with: @book.monetary_value
+    fill_in "Isbn", with: @book.ISBN
+    fill_in "Publisher", with: @book.Publisher_id
+    fill_in "Edition", with: @book.edition
+    fill_in "Format", with: @book.forma
+    fill_in "Genre", with: @book.genre
+    fill_in "Language", with: @book.language
+    fill_in "Name", with: @book.name
+    fill_in "Number of pages", with: @book.number_of_pages
+    fill_in "Published at", with: @book.published_at
+    fill_in "Synopsis", with: @book.synopsis
     click_on "Create Book"
 
     assert_text "Book was successfully created"
@@ -29,11 +34,16 @@ class BooksTest < ApplicationSystemTestCase
     visit book_url(@book)
     click_on "Edit this book", match: :first
 
-    fill_in "Bookpublisher", with: @book.BookPublisher_id
-    fill_in "Bought", with: @book.bought
-    fill_in "Comments", with: @book.comments
-    fill_in "Decommissioned", with: @book.decommissioned
-    fill_in "Monetary value", with: @book.monetary_value
+    fill_in "Isbn", with: @book.ISBN
+    fill_in "Publisher", with: @book.Publisher_id
+    fill_in "Edition", with: @book.edition
+    fill_in "Format", with: @book.forma
+    fill_in "Genre", with: @book.genre
+    fill_in "Language", with: @book.language
+    fill_in "Name", with: @book.name
+    fill_in "Number of pages", with: @book.number_of_pages
+    fill_in "Published at", with: @book.published_at
+    fill_in "Synopsis", with: @book.synopsis
     click_on "Update Book"
 
     assert_text "Book was successfully updated"

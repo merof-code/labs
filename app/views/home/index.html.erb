@@ -1,36 +1,36 @@
 <h1>Home#index</h1>
-should have authent
-<div class="buttons">
-
-  <div class="columns">
-    <div class="column ">
-      <div class="bd-notification is-primary" >
-        Інформація користувачів:
+<div class="container">
+  <div class="buttons">
+    <div class="columns">
+      <div class="column">
+        <div class="notification is-primary">
+          <strong>Інформація користувачів:</strong>
+        </div>
+        <%= link_to "Roles", roles_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Users", users_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Cards", cards_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Departments", departments_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Faculties", faculties_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Groups", groups_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Publishers", publishers_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Permissions", permissions_path, class: "button is-secondary is-light is-fullwidth" %>
       </div>
-      <%= link_to "Roles", roles_path, class: "button" %>
-      <%= link_to "Users", users_path, class: "button" %>
-      <%= link_to "Cards", cards_path, class: "button" %>
-      <%= link_to "departments", departments_path, class: "button" %>
-      <%= link_to "faculties", faculties_path, class: "button" %>
-      <%= link_to "groups", groups_path, class: "button" %>
-      <%= link_to "publisher", publishers_path, class: "button" %>
-      <%= link_to "permission", permissions_path, class: "button" %>
-    </div>
-    <div class="column">
-      <div class="bd-notification is-primary" >
-        Інформація книг
+      <div class="column">
+        <div class="notification is-primary">
+          <strong>Інформація книг:</strong>
+        </div>
+        <%= link_to "Authors", authors_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Books", books_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Physical Books", physical_books_path, class: "button is-secondary is-light is-fullwidth" %>
       </div>
-      <%= link_to "authors", authors_path, class: "button" %>
-      <%= link_to "Books", books_path, class: "button" %>
-      <%= link_to "phisicall books", physical_books_path, class: "button" %>
-    </div>
-    <div class="column">
-      <div class="bd-notification is-primary" >
-        Інформація книг які беруть користувачі
+      <div class="column">
+        <div class="notification is-primary">
+          <strong>Інформація книг, які беруть користувачі:</strong>
+        </div>
+        <%= link_to "Borrows", borrows_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Borrow Extensions", borrow_extensions_path, class: "button is-secondary is-light is-fullwidth" %>
+        <%= link_to "Extension Reasons", extension_reasons_path, class: "button is-secondary is-light is-fullwidth" %>
       </div>
-      <%= link_to "Borrows", borrows_path, class: "button" %>
-      <%= link_to "Borrows extension", borrow_extensions_path, class: "button" %>
-      <%= link_to "extension_reason", extension_reasons_path, class: "button" %>
     </div>
   </div>
 </div>

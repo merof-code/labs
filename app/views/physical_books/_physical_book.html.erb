@@ -1,27 +1,47 @@
-<div id="<%= dom_id physical_book %>">
-  <p>
-    <strong>Bought:</strong>
-    <%= physical_book.bought %>
-  </p>
+<div id="<%= dom_id physical_book %>" class="box">
+  <div class="columns is-vcentered">
+    <div class="column">
+      <p>
+        <strong>Bought:</strong>
+        <%= physical_book.bought %>
+      </p>
 
-  <p>
-    <strong>Decommissioned:</strong>
-    <%= physical_book.decommissioned %>
-  </p>
+      <p>
+        <strong>Decommissioned:</strong>
+        <%= physical_book.decommissioned %>
+      </p>
 
-  <p>
-    <strong>Monetary value:</strong>
-    <%= physical_book.monetary_value %>
-  </p>
+      <p>
+        <strong>Monetary value:</strong>
+        <%= physical_book.monetary_value %>
+      </p>
 
-  <p>
-    <strong>Comments:</strong>
-    <%= physical_book.comments %>
-  </p>
+      <p>
+        <strong>Comments:</strong>
+        <%= physical_book.comments %>
+      </p>
 
-  <p>
-    <strong>Book:</strong>
-    <%= physical_book.book_id %>
-  </p>
+      <p>
+        <strong>Book:</strong>
+        <%= physical_book.book.name %>
+      </p>
+    </div>
+    <div class="column is-narrow">
+      <div class="buttons">
+        <%= link_to edit_physical_book_path(physical_book), class: "button is-primary" do %>
+          <span class="icon">
+            <i class="fas fa-edit"></i>
+          </span>
+          <span>Edit</span>
+        <% end %>
 
+        <%= link_to physical_book, method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-trash-alt"></i>
+          </span>
+          <span>Delete</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

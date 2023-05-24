@@ -1,57 +1,116 @@
-<div id="<%= dom_id librarian %>">
-  <p>
-    <strong>Nickname:</strong>
-    <%= librarian.nickname %>
-  </p>
+<div id="<%= dom_id librarian %>" class="box">
+  <div class="columns is-multiline">
+    <div class="column is-half">
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Nickname:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.nickname %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Pfp:</strong>
-    <%= librarian.pfp %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Email:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.email %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Email:</strong>
-    <%= librarian.email %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">First name:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.first_name %>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Last name:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.last_name %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Phone number:</strong>
-    <%= librarian.phone_number %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Middle name:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.middle_name %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <p>
-    <strong>First name:</strong>
-    <%= librarian.first_name %>
-  </p>
+    <div class="column is-half">
+      
+<div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Phone number:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.phone_number %>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Role:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.role.name if librarian.role %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Last name:</strong>
-    <%= librarian.last_name %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Department:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.department.name if librarian.department %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Middle name:</strong>
-    <%= librarian.middle_name %>
-  </p>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Start date:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.start_date %>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    <strong>Role:</strong>
-    <%= librarian.role_id %>
-  </p>
-
-  <p>
-    <strong>Department:</strong>
-    <%= librarian.department_id %>
-  </p>
-
-  <p>
-    <strong>Start date:</strong>
-    <%= librarian.start_date %>
-  </p>
-
-  <p>
-    <strong>End date:</strong>
-    <%= librarian.end_date %>
-  </p>
-
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">End date:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <%= librarian.end_date %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

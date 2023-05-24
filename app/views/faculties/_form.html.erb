@@ -1,6 +1,6 @@
-<%= form_with(model: faculty) do |form| %>
+<%= form_with(model: faculty, class: "box") do |form| %>
   <% if faculty.errors.any? %>
-    <div style="color: red">
+    <div class="notification is-danger">
       <h2><%= pluralize(faculty.errors.count, "error") %> prohibited this faculty from being saved:</h2>
 
       <ul>
@@ -11,12 +11,23 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="field">
+    <%= form.label :name, class: "label" %>
+    <div class="control">
+      <%= form.text_field :name, class: "input" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <%# <div class="field">
+    <%= form.label :department_id, class: "label" %>
+    <%# <div class="control"> %>
+      <%#= form.collection_select :department_id, Department.all, :id, :name, {}, class: "input" %>
+    <%# </div>
+  </div>  %>
+
+  <div class="field">
+    <div class="control">
+      <%= form.submit "Save", class: "button is-primary" %>
+    </div>
   </div>
 <% end %>
