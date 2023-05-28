@@ -1,7 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @book %>
-
+<%= for @book.physical_books in 
+  
+end
+ %>
 <div>
   <%= link_to "Edit this book", edit_book_path(@book) %> |
   <%= link_to "Back to books", books_path %>

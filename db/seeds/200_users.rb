@@ -48,3 +48,16 @@ User.create(
   department: Department.find_by(name: 'Admins'),
   password: '1234567890qwe'
 )
+puts 'seeding Librarian'
+User.create(
+  nickname: 'Librarian',
+  first_name: 'fid',
+  last_name: 'laa',
+  middle_name: 'mfi',
+  email: 'librarian@example.com',
+  role: Role.find_by(name: 'Librarian'),
+  start_date: DateTime.now,
+  department: Department.find_by(name: 'Librarians'),
+  password: '1234567890qwe',
+  type: 'Librarian'
+)

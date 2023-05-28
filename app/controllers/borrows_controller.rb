@@ -4,26 +4,37 @@ class BorrowsController < ApplicationController
   # GET /borrows or /borrows.json
   def index
     @borrows = Borrow.includes(:return_inspector, :approver, :user).all
+    load_ph_books
   end
 
   # GET /borrows/1 or /borrows/1.json
   def show
+    load_ph_books
   end
 
   # GET /borrows/new
   def new
-    @borrow = Borrow.new
+    @borrow = Borrow.new(
+      borrow_date: DateTime.now, 
+      scheduled_return_date: DateTime.now + PhysicalBook.borrow_days,
+      approver: current_user)
+    load_ph_books
   end
 
   # GET /borrows/1/edit
   def edit
+    load_ph_books
+  end
+
+  def load_ph_books
     @physical_books = PhysicalBook.joins(:book)
-    .select("books.name || ' (' || COUNT(*) || ')' AS name")
-      .group('books.name').limit(100)
+      .select(:id).select("books.name || ' (' || COUNT(*) || ')' AS name")
+        .group('books.name').group(:id).limit(100)
   end
 
   # POST /borrows or /borrows.json
   def create
+    load_ph_books
     @borrow = Borrow.new(borrow_params)
 
     respond_to do |format|
@@ -68,7 +79,7 @@ class BorrowsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def borrow_params
-      params.require(:borrow).permit(:Book_id, :user_id, :approver_id, :return_inspector_id, :borrow_date, :scheduled_return_date,
-         :returned_at, :cost, :comments)
+      params.require(:borrow).permit(:user_id, :approver_id, :return_inspector_id, :borrow_date, :scheduled_return_date,
+         :returned_at, :cost, :comments, :physical_book_id)
     end
 end

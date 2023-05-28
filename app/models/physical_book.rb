@@ -5,6 +5,10 @@ class PhysicalBook < ApplicationRecord
   has_many :borrows
 
   def borrow_days
+    PhysicalBook.borrow_days
+  end
+
+  def self.borrow_days
     14
   end
 
@@ -15,5 +19,9 @@ class PhysicalBook < ApplicationRecord
   def available_at(from:, to:)
     from, to = to, from if from > to
     borrows.borrowed_at(from, to).count.zero?
+  end
+
+  def book_name
+    book.name
   end
 end

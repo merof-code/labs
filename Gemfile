@@ -76,3 +76,5 @@ group :test do
 end
 
 gem "faker", "~> 3.2"
+
+gem "scenic", "~> 1.7"

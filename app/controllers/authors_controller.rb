@@ -4,6 +4,7 @@ class AuthorsController < ApplicationController
   # GET /authors or /authors.json
   def index
     @authors = Author.all
+    @authors = @authors.where('last_name ilike ?', "%#{params[:search_field]}%") if params[:search_field]
   end
 
   # GET /authors/1 or /authors/1.json

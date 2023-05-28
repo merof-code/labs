@@ -3,12 +3,21 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.includes(:publisher).all
+    @books = Book.includes(:publisher)
+                 .joins(:physical_books)
+                 .select('books.*, COUNT(physical_books.id) AS physical_books_count')
+                 .group('books.id')
     @books = @books.where('name ilike ?', "%#{params[:search_field]}%") if params[:search_field]
   end
 
   # GET /books/1 or /books/1.json
   def show
+    @book = Book.includes(:publisher)
+                 .includes(:physical_books)
+                 .find_by_id(params[:id])
+    @book.define_singleton_method(:physical_books_count) do
+      self.physical_books.count
+    end 
   end
 
   # GET /books/new

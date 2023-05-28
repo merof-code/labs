@@ -13,7 +13,10 @@
 
   <div class="field">
     <%= form.label :physical_book_id, class: "label" %>
-    <%= form.collection_select :physical_book_id, @physical_books, :id, :name, {}, {class: "select"} %>
+    <%= params[:action] %>
+    <% if params[:action].in? ['new', 'create'] %>
+      <%= form.collection_select :physical_book_id, @physical_books, :id, :name, {}, {class: "select"} %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -37,8 +40,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :return_date, class: "label" %>
-    <%= form.datetime_field :return_date, class: "input" %>
+    <%= form.label :scheduled_return_date, class: "label" %>
+    <%= form.datetime_field :scheduled_return_date, class: "input" %>
   </div>
 
   <div class="field">

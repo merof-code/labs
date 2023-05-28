@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_002236) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_28_214259) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -293,4 +293,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_002236) do
   add_foreign_key "teacher_infos", "users"
   add_foreign_key "users", "departments"
   add_foreign_key "users", "roles"
+
+  create_view "books_full_infos", sql_definition: <<-SQL
+      SELECT b.id AS book_id,
+      b.name AS book_name,
+      a.authors_middle_names,
+      p.name AS publisher_name
+     FROM (((books b
+       JOIN book_authors ba ON ((b.id = ba.book_id)))
+       JOIN ( SELECT b_1.id AS book_id,
+              string_agg((a_1.middle_name)::text, ', '::text) AS authors_middle_names
+             FROM ((books b_1
+               JOIN book_authors ba_1 ON ((b_1.id = ba_1.book_id)))
+               JOIN authors a_1 ON ((ba_1.author_id = a_1.id)))
+            GROUP BY b_1.id) a ON ((b.id = a.book_id)))
+       JOIN publishers p ON ((b.publisher_id = p.id)));
+  SQL
+  create_view "students_full_infos", sql_definition: <<-SQL
+      SELECT concat(u.first_name, ' ', u.last_name) AS full_name,
+      u.nickname,
+      u.email,
+      d.id AS department_id,
+      d.name AS department_name,
+      r.id AS role_id,
+      r.name AS role_name,
+      si.year,
+      si.group_id,
+      g.name AS group_name
+     FROM ((((users u
+       JOIN student_infos si ON ((u.id = si.user_id)))
+       JOIN departments d ON ((u.department_id = d.id)))
+       JOIN roles r ON ((u.role_id = r.id)))
+       JOIN groups g ON ((si.group_id = g.id)))
+    WHERE ((u.type)::text = 'Student'::text);
+  SQL
 end

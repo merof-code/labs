@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Borrows</h1>
+<%= link_to "New borrow", new_borrow_path %>
 
 <div id="borrows">
   <% @borrows.each do |borrow| %>
@@ -11,4 +12,3 @@
   <% end %>
 </div>
 
-<%= link_to "New borrow", new_borrow_path %>

@@ -51,6 +51,12 @@
         <%= book.number_of_pages %>
       </p>
     </div>
+    <div class="column">
+      <p>
+        <strong>copies:</strong>
+        <%= book.physical_books_count %>
+      </p>
+    </div>
     <div class="column is-narrow">
       <div class="buttons">
         <%= link_to edit_book_path(book), class: "button is-primary" do %>
